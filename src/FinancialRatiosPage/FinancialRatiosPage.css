@@ -1,0 +1,69 @@
+
+.sec-title {
+    text-transform: uppercase;
+    color: #676767;
+    margin: 20px 0px;
+    font-size: 25px;
+}
+.financial-ratios-table {
+    width: 100%;
+    text-align: center;
+
+}
+.financial-ratios-table tbody tr th {
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+}
+.period-btn,
+.currency-tabs  {
+    border: 1px solid #ff0;
+    border-radius: 5px;
+    width: 350px;
+}
+.period-btn button,
+.currency-tabs button {
+    background-color: white;
+    border: unset;
+    width: 100%;
+    padding: 10px;
+}
+button.active,
+button.active-currency {
+    background-color: #ffe738;
+    font-weight: 700;
+}
+
+.chart-btn {
+    border: unset;
+    background-color:#f5f5f5;
+}
+.chart-img {
+    cursor: pointer !important;
+    width: 25px;
+    height: 25px;
+}
+.close-sign {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: blue;
+    height: 22px;
+    width: 22px;
+    font-size: 20px;
+    border-radius: 50px;
+    margin-inline-end: 10px;
+    line-height: 0.5px;
+    border-radius: 0px;
+    background-color: #f5f5f5 !important;
+}
+
+@media (max-width: 769px) {
+    .financial-ratios-table {
+        width: 700px;
+    }
+    .financial-ratios {
+        overflow-x: scroll;
+    }
+
+}

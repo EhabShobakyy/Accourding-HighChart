@@ -1,0 +1,28 @@
+.close-btn {
+    background-color: var(--first-color);
+    border-radius: 20px;
+    color: var(--second-color);
+    border: unset;
+    padding: 0px 4px;
+}
+.modal-text {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 0px;
+    font-size: 14px;
+}
+
+.modal-text p:nth-child(2) {
+    color: var(--second-color);
+}
+
+.details-text {
+    font-weight: bold;
+    border-bottom: 1px solid #dee2e6;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.details-data {
+    margin-top: 6px;
+    font-size: 14px;
+}
