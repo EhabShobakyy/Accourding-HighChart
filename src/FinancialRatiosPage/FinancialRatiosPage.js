@@ -63,11 +63,11 @@ function FinancialRatiosPage() {
         .map((item) => Number(formatNumChart(item.value)))
     );
 
-    setChartYears(
-      financialRatios[id].financialRatioFieldsGroupFields[e].values
-        .slice(0, 5)
-        .map((item) => item.year)
-    );
+    // setChartYears(
+    //   financialRatios[id].financialRatioFieldsGroupFields[e].values
+    //     .slice(0, 5)
+    //     .map((item) => item.year)
+    // );
     setChartName(financialRatios[id].financialRatioFieldsGroupFields[e].nameEn);
   };
 
@@ -129,7 +129,7 @@ function FinancialRatiosPage() {
       <div className="financial-ratios">
         <div className="container-md my-4">
           <h3>Financial Ratios</h3>
-          <div className="financial-tabs d-flex justify-content-between flex-wrap my-4">
+          <div className="financial-tabs d-flex justify-content-between  my-4">
             <div className="period-btn d-flex ">
               <button className="active" value="year" onClick={handelActive}>
                 Annual
