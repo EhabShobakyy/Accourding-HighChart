@@ -30,7 +30,6 @@ function FinancialRatiosPage() {
 
   useEffect(() => {
     AccessRefreshTokens.getAccessToken();
-
     axios
       .get(
         `https://data.argaam.com/api/v1/json/ir-api/financial-ratios?fiscalPeriodType=${periodTabs}`,
@@ -121,9 +120,12 @@ function FinancialRatiosPage() {
   };
 
   const currencyChange = (num) => {
-    if (currencyType === "USD") return formatNum(num / 3.75);
-    else return formatNum(num);
+    if (currencyType === "USD") {
+      if (isNaN(num)) return "";
+      else return formatNum(num / 3.75);
+    } else return formatNum(num);
   };
+
   return (
     <>
       <div className="financial-ratios">
