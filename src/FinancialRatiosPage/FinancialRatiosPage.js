@@ -92,13 +92,6 @@ function FinancialRatiosPage() {
       },
     ],
   };
-  // {
-  //   console.log(
-  //     financialRatios[0]?.financialRatioFieldsGroupFields[0]?.values
-  //       ?.slice(0, 4)
-  //       ?.map((years) => years)
-  //   );
-  // }
 
   const handelActive = (e) => {
     // to add class to chart button
@@ -119,8 +112,8 @@ function FinancialRatiosPage() {
     setCurrencyType(e.target.value);
   };
 
-  const currencyChange = (num) => {
-    if (currencyType === "USD") {
+  const currencyChange = (num, test) => {
+    if (currencyType === "USD" && test.ratioName != "SharesOutstandings1") {
       if (isNaN(num)) return "";
       else return formatNum(num / 3.75);
     } else return formatNum(num);
@@ -212,7 +205,7 @@ function FinancialRatiosPage() {
                                 child?.values[0]?.value < 0 ? "red" : "green",
                             }}
                           >
-                            {currencyChange(child?.values[0]?.value)}
+                            {currencyChange(child?.values[0]?.value, child)}
                           </p>
                         </td>
                         <td>
@@ -222,7 +215,7 @@ function FinancialRatiosPage() {
                                 child?.values[1]?.value < 0 ? "red" : "green",
                             }}
                           >
-                            {currencyChange(child?.values[1]?.value)}
+                            {currencyChange(child?.values[1]?.value, child)}
                           </p>
                         </td>
                         <td>
@@ -232,7 +225,7 @@ function FinancialRatiosPage() {
                                 child?.values[2]?.value < 0 ? "red" : "green",
                             }}
                           >
-                            {currencyChange(child?.values[2]?.value)}
+                            {currencyChange(child?.values[2]?.value, child)}
                           </p>
                         </td>
                         <td>
@@ -242,7 +235,7 @@ function FinancialRatiosPage() {
                                 child?.values[3]?.value < 0 ? "red" : "green",
                             }}
                           >
-                            {currencyChange(child?.values[3]?.value)}
+                            {currencyChange(child?.values[3]?.value, child)}
                           </p>
                         </td>
                         <td>
@@ -252,7 +245,7 @@ function FinancialRatiosPage() {
                                 child?.values[4]?.value < 0 ? "red" : "green",
                             }}
                           >
-                            {currencyChange(child?.values[4]?.value)}
+                            {currencyChange(child?.values[4]?.value, child)}
                           </p>
                         </td>
                       </tr>
