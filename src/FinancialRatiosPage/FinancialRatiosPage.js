@@ -20,13 +20,7 @@ function FinancialRatiosPage() {
   const [chartPopup, setChartPopup] = useState([]);
   const [chartName, setChartName] = useState([]);
   const [currencyType, setCurrencyType] = useState("SAR");
-  const [chartYears, setChartYears] = useState([
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018",
-  ]);
+  const [chartYears, setChartYears] = useState(`year`);
 
   useEffect(() => {
     AccessRefreshTokens.getAccessToken();
@@ -46,7 +40,7 @@ function FinancialRatiosPage() {
       .catch((err) => {
         console.log(err);
       });
-  }, [periodTabs, localStorage.getItem("token")]);
+  }, [chartPopup, periodTabs, localStorage.getItem("token")]);
 
   // Format Number
   const formatNum = (num) =>
@@ -62,12 +56,23 @@ function FinancialRatiosPage() {
         .map((item) => Number(formatNumChart(item.value)))
     );
 
-    // setChartYears(
-    //   financialRatios[id].financialRatioFieldsGroupFields[e].values
-    //     .slice(0, 5)
-    //     .map((item) => item.year)
-    // );
+    console.log(chartPopup);
+
     setChartName(financialRatios[id].financialRatioFieldsGroupFields[e].nameEn);
+  };
+
+  const changeYear = () => {
+    return financialRatios[0]?.financialRatioFieldsGroupFields[0]?.values
+      ?.slice(0, 5)
+      ?.map((years, id) => <th key={id}> {years?.[`${chartYears}`]}</th>);
+  };
+
+  const yearOptions = () => {
+    let years = [];
+    return (years =
+      financialRatios[0]?.financialRatioFieldsGroupFields[0]?.values
+        ?.slice(0, 5)
+        ?.map((years) => years?.[`${chartYears}`]));
   };
 
   const options = {
@@ -78,7 +83,7 @@ function FinancialRatiosPage() {
       text: "",
     },
     xAxis: {
-      categories: chartYears,
+      categories: yearOptions(),
     },
     yAxis: {
       title: {
@@ -101,9 +106,13 @@ function FinancialRatiosPage() {
     });
     e.target.className = "active";
     setPeriodTabs(e?.target?.value);
+
+    e?.target?.value === "quarter"
+      ? setChartYears("period")
+      : setChartYears("year");
   };
 
-  const currencyActive = (e, num) => {
+  const currencyActive = (e) => {
     var elems = document.querySelectorAll(".active-currency");
     [].forEach.call(elems, function (el) {
       el.classList.remove("active-currency");
@@ -112,8 +121,8 @@ function FinancialRatiosPage() {
     setCurrencyType(e.target.value);
   };
 
-  const currencyChange = (num, test) => {
-    if (currencyType === "USD" && test.ratioName != "SharesOutstandings1") {
+  const currencyChange = (num, child) => {
+    if (currencyType === "USD" && child.ratioName != "SharesOutstandings1") {
       if (isNaN(num)) return "";
       else return formatNum(num / 3.75);
     } else return formatNum(num);
@@ -153,9 +162,7 @@ function FinancialRatiosPage() {
               <tr>
                 <th style={{ textAlign: "left" }}>Details</th>
                 <th>Graphs</th>
-                {chartYears.map((year, id) => {
-                  return <th key={id}>{year}</th>;
-                })}
+                {changeYear()}
               </tr>
             </thead>
             {financialRatios?.map((item, id) => {
