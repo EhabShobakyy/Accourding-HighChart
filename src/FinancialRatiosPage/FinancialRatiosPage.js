@@ -90,6 +90,9 @@ function FinancialRatiosPage() {
         text: "",
       },
     },
+    credits: {
+      enabled: false,
+    },
     series: [
       {
         name: "Extra",
